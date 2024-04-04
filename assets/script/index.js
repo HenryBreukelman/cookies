@@ -10,7 +10,7 @@ const accept = document.querySelector('.accept');
 const settings = document.querySelector('.settings');
 const save = document.querySelector('.save');
 const browser = document.querySelector('.browser');
-const operatingSysten = document.querySelector('.operatingSysten');
+const operatingSystem = document.querySelector('.operatingSysten');
 const screenWidth = document.querySelector('.screenWidth');
 const screenHeight = document.querySelector('.screenHeight');
 
@@ -83,7 +83,7 @@ function getHeight() {
  return `${window.innerHeight}px`
 }
 
-//choosing
+//dialog boxs
 
 function openDialog() {
   cookieBox.classList.remove('hidden');
@@ -109,7 +109,28 @@ function openSettings() {
 
 function saveSettings() {
   settingsBox.classList.add('hidden');
+  if (browser.checked) {
+    browserCookie();
+    console.log(getCookie('Browser'));
+  }
+
+  if (operatingSystem.checked) {
+    osCookie();
+    console.log(getCookie('OS'));
+  }
+
+  if (screenWidth.checked) {
+    widthCookie();
+    console.log(getCookie('Width'));
+  }
+
+  if (screenHeight.checked) {
+    heightCookie();
+    console.log(getCookie('Height'));
+  }
 }
+
+//set cookies
 
 function browserCookie() {
   let browserName = getBrowser();
@@ -117,8 +138,8 @@ function browserCookie() {
 }
 
 function osCookie() {
-  let operatingSystem = getOperatingSystem();
-  setCookie('OS', operatingSystem, cookieTime);
+  let operatingSystemName = getOperatingSystem();
+  setCookie('OS', operatingSystemName, cookieTime);
 }
 
 function widthCookie() {

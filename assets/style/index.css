@@ -50,15 +50,21 @@ main {
   background-color: #fff;
   color: #000;
   width: 260px;
-  height: 260px;
-  padding: 10px;
+  height: 280px;
+  padding: 15px;
   border-radius: 8px;
-  top: calc(50svh - 130px);
+  top: calc(50svh - 140px);
   left: calc(50svw - 130px);
 }
 
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
 .button {
-  margin-top: 10px;
+  margin: 15px 5px 0 5px;
   width: 110px;
   height: 40px;
   border-radius: 50px;
@@ -68,13 +74,10 @@ main {
 .accept, .save {
   background-color: #09f;
   color: #fff;
-  border: 1px solid #09f;
 }
 
 .accept:hover, .save:hover {
-  background-color: #fff;
-  color: #09f;
-  border: 1px solid #09f;
+  background-color: #6600ff;
 }
 
 .settings {
@@ -84,8 +87,8 @@ main {
 }
 
 .settings:hover {
-  background-color: #09f;
-  color: #fff;
+  color: #6600ff;
+  border: 1px solid #6600ff;
 }
 
 .save {
@@ -113,7 +116,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #09f;
+  background-color: #6600ff;
   -webkit-transition: .4s;
   transition: .4s;
   border-radius: 50px;
@@ -133,7 +136,7 @@ main {
 }
 
 input:checked + .slider {
-background-color: #5100ff;
+background-color: #09f;
 }
 
 input:checked + .slider:before {

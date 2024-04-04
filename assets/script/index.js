@@ -20,6 +20,8 @@ let cookieTime = 15;
   functions
 */
 
+//get/set cookies
+
 function setCookie(name, value, maxAge) {
   const encodedName = encodeURIComponent(name)
   const encodedValue = encodeURIComponent(value)
@@ -36,10 +38,12 @@ function getCookie(name) {
     let cookieValue = decodeURIComponent(cookieParts[1] || '');
 
     if (cookieName === name) {
-      return cookieValue;
+      return `${cookieName}: ${cookieValue}`
     }
   }
 }
+
+// info
 
 function getBrowser() {
   const browserMap = {
@@ -57,7 +61,7 @@ function getBrowser() {
   return detectedBrowser
 } //got from chatGPT
 
-function getOperatingSystem () {
+function getOperatingSystem() {
   const osMap = {
       "Windows": "Windows",
       "Mac": "Mac OS",
@@ -71,18 +75,32 @@ function getOperatingSystem () {
   return detectedOS
 } //got from chatGPT
 
+function getWidth() {
+  return `${window.innerWidth}px`
+}
+
+function getHeight() {
+ return `${window.innerHeight}px`
+}
+
+//choosing
+
 function openDialog() {
   cookieBox.classList.remove('hidden');
 }
 
 function acceptAll() {
-  let browserName = getBrowser();
   cookieBox.classList.add('hidden');
-  setCookie('browser', browserName, cookieTime)
-  console.log(getCookie('browser'))
-  console.log(document.cookie)
+  browserCookie();
+  osCookie();
+  widthCookie();
+  heightCookie();
+  console.log(document.cookie);
+  console.log(getCookie('Browser'));
+  console.log(getCookie('OS'));
+  console.log(getCookie('Width'));
+  console.log(getCookie('Height'));
 }
-
 
 function openSettings() {
   settingsBox.classList.remove('hidden');
@@ -91,6 +109,26 @@ function openSettings() {
 
 function saveSettings() {
   settingsBox.classList.add('hidden');
+}
+
+function browserCookie() {
+  let browserName = getBrowser();
+  setCookie('Browser', browserName, cookieTime);
+}
+
+function osCookie() {
+  let operatingSystem = getOperatingSystem();
+  setCookie('OS', operatingSystem, cookieTime);
+}
+
+function widthCookie() {
+  let width = getWidth();
+  setCookie('Width', width, cookieTime);
+}
+
+function heightCookie() {
+  let height = getHeight();
+  setCookie('Height', height, cookieTime)
 }
 
 /*

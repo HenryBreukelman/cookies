@@ -41,7 +41,7 @@ function getCookie(name) {
       return `${cookieName}: ${cookieValue}`
     }
   }
-}
+} //help from chatGPT
 
 // info
 
@@ -86,7 +86,9 @@ function getHeight() {
 //dialog boxs
 
 function openDialog() {
-  cookieBox.classList.remove('hidden');
+  if (document.cookie.length === 0) {
+    cookieBox.classList.remove('hidden');
+  }
 }
 
 function acceptAll() {
@@ -95,7 +97,6 @@ function acceptAll() {
   osCookie();
   widthCookie();
   heightCookie();
-  console.log(document.cookie);
   console.log(getCookie('Browser'));
   console.log(getCookie('OS'));
   console.log(getCookie('Width'));
@@ -127,6 +128,10 @@ function saveSettings() {
   if (screenHeight.checked) {
     heightCookie();
     console.log(getCookie('Height'));
+  }
+
+  if (document.cookie.length === 0) {
+    setCookie('none', 'none', cookieTime)
   }
 }
 

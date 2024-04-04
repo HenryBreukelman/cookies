@@ -14,12 +14,16 @@ const operatingSysten = document.querySelector('.operatingSysten');
 const screenWidth = document.querySelector('.screenWidth');
 const screenHeight = document.querySelector('.screenHeight');
 
+let cookieTime = 15;
+
 /*
   functions
 */
 
 function setCookie(name, value, maxAge) {
-  document.cookie = `${name}=${value}; path=/; max-age=${maxAge}; SameSite=Lax`
+  const encodedName = encodeURIComponent(name)
+  const encodedValue = encodeURIComponent(value)
+  document.cookie = `${encodedName}=${encodedValue}; path=/; max-age=${maxAge}; SameSite=Lax`
 }
 
 function getCookie(name) {
@@ -37,13 +41,48 @@ function getCookie(name) {
   }
 }
 
+function getBrowser() {
+  const browserMap = {
+    "Firefox": "Firefox",
+    "Edg": "Edge",
+    "Chrome": "Chrome",
+    "Safari": "Safari",
+    "Opera": "Opera",
+    "OPR": "Opera"
+  };
+
+  let browserName = window.navigator.userAgent;
+  let detectedBrowser = Object.keys(browserMap).find(browser => 
+    browserName.includes(browser)) || 'Unknown';
+  return detectedBrowser
+} //got from chatGPT
+
+function getOperatingSystem () {
+  const osMap = {
+      "Windows": "Windows",
+      "Mac": "Mac OS",
+      "Linux": "Linux",
+      "Android": "Android",
+      "iOS": "iOS"
+  };
+  
+  let Opsystem = window.navigator.userAgent;
+  let detectedOS = Object.keys(osMap).find(os => Opsystem.includes(os)) || 'Unknown';
+  return detectedOS
+} //got from chatGPT
+
 function openDialog() {
   cookieBox.classList.remove('hidden');
 }
 
 function acceptAll() {
+  let browserName = getBrowser();
   cookieBox.classList.add('hidden');
+  setCookie('browser', browserName, cookieTime)
+  console.log(getCookie('browser'))
+  console.log(document.cookie)
 }
+
 
 function openSettings() {
   settingsBox.classList.remove('hidden');

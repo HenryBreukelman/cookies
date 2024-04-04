@@ -45,6 +45,13 @@ main {
 
 /* cookies */
 
+.background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+}
+
 .dialog {
   position: absolute;
   background-color: #fff;

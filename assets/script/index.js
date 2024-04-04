@@ -18,21 +18,40 @@ const screenHeight = document.querySelector('.screenHeight');
   functions
 */
 
+function setCookie(name, value, maxAge) {
+  document.cookie = `${name}=${value}; path=/; max-age=${maxAge}; SameSite=Lax`
+}
+
+function getCookie(name) {
+  const cookies = document.cookie.split(';');
+
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim();
+    let cookieParts = cookie.split('=');
+    let cookieName = decodeURIComponent(cookieParts[0]);
+    let cookieValue = decodeURIComponent(cookieParts[1] || '');
+
+    if (cookieName === name) {
+      return cookieValue;
+    }
+  }
+}
+
 function openDialog() {
-  console.log(4)
   cookieBox.classList.remove('hidden');
 }
 
 function acceptAll() {
-
+  cookieBox.classList.add('hidden');
 }
 
 function openSettings() {
-
+  settingsBox.classList.remove('hidden');
+  cookieBox.classList.add('hidden');
 }
 
 function saveSettings() {
-
+  settingsBox.classList.add('hidden');
 }
 
 /*
